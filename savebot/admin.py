@@ -17,7 +17,7 @@ class TelegramUsersAdmin(ImportExportModelAdmin):
 
 class ApiCallsAdmin(admin.ModelAdmin):
     list_display = ['id', 'name', 'status']
-
+    list_filter = ['name', 'status', 'created_at']
 
 admin.site.register(Channels, ChannelsAdmin)
 admin.site.register(TelegramUsers, TelegramUsersAdmin)
