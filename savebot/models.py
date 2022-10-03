@@ -1,3 +1,4 @@
+from xmlrpc.client import Boolean
 from django.db import models
 from multiselectfield import MultiSelectField
 # Create your models here.
@@ -28,6 +29,8 @@ class Channels(models.Model):
     )
 
     username = models.CharField(max_length = 255)
+    invite_link = models.CharField(max_length = 255, verbose_name = "TASHRIF LINKI")
+    status = models.BooleanField(verbose_name="HOLATI")
     language = MultiSelectField(choices=LANGUAGES, max_length=10, verbose_name='TIL')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="QO'SHILGAN VAQTI")
 
@@ -41,7 +44,7 @@ class Channels(models.Model):
 
 class ApiCalls(models.Model):
     name = models.CharField(max_length=255)
-    status = models.BooleanField()
+    status = models.BooleanField(verbose_name="HOLATI")
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
@@ -50,3 +53,15 @@ class ApiCalls(models.Model):
     class Meta:
         verbose_name = "API so'rovlar"
         verbose_name_plural = "API so'rovlar"
+
+
+class InviteLink(models.Model):
+    name = models.CharField(max_length=255, verbose_name="Nomi")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self) -> str:
+        return self.name
+
+    class Meta:
+        verbose_name = "Link"
+        verbose_name_plural = "Link"
